@@ -1,0 +1,11 @@
+[Protocol]
+exec=JMAGcoin-qt '%u'
+protocol=JMAGcoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

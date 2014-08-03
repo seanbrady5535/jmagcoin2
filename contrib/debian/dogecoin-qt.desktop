@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=JMAGcoin
+Comment=JMAGcoin P2P Cryptocurrency
+Comment[fr]=JMAGcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=JMAGcoin, eşten eşe kriptografik sanal para birimi
+Exec=JMAGcoin-qt %u
+Terminal=false
+Type=Application
+Icon=JMAGcoin128
+MimeType=x-scheme-handler/JMAGcoin;
+Categories=Office;Finance;

@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+
+#DEB_MAKE_CHECK_TARGET = test_JMAGcoin
+#build/JMAGcoind::
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_JMAGcoin)
+
+DEB_INSTALL_EXAMPLES_JMAGcoind += debian/examples/*
+DEB_INSTALL_MANPAGES_JMAGcoind += debian/manpages/*
+
+%:
+	dh --with bash-completion $@
+
+override_dh_auto_build:
+	cd src; $(MAKE) -f makefile.unix JMAGcoind
+	$(MAKE)
+
+override_dh_auto_clean:
+	if [ -f Makefile ]; then $(MAKE) clean; else rm -rf build/; rm -f JMAGcoin-qt; fi
+	cd src; $(MAKE) -f makefile.unix clean
+
+override_dh_auto_configure:
+	qmake JMAGcoin-qt.pro USE_QRCODE=1
+
+override_dh_auto_test:
+	cd src; $(MAKE) -f makefile.unix test_JMAGcoin
+	src/test_JMAGcoin
+
+# Ensure wrapper is set executable
+binary-post-install/JMAGcoind:
+	chmod +x $(cdbs_curdestdir)usr/bin/JMAGcoind
+binary-post-install/JMAGcoin-qt:
+	chmod +x $(cdbs_curdestdir)usr/bin/JMAGcoin-qt
